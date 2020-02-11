@@ -97,3 +97,8 @@ https://www.katacoda.com/courses/ubuntu/playground
    46  apt update
    
    47  history
+   
+   48 sudo kubeadm join --token TOKEN MASTER_IP:6443
+   
+   49 Kubectl get nodes
+   
