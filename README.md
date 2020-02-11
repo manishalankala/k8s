@@ -61,22 +61,41 @@ https://www.katacoda.com/courses/ubuntu/playground
    27  sudo swapoff -a
    
    28  clear
+   
    29  cat /etc/fstab
+   
    30  sudo kubeadm init
+   
    31  mkdir -p $HOME/.kube
+   
    32  sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+   
    33  sudo chown $(id -u):$(id -g) $HOME/.kube/config
+   
    34  apt install sudo
+   
    35  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+   
    36  sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/k8s-manifests/kube-flannel-rbac.yml
+   
    37  sudo kubectl get pods --all-namespaces
+   
    38  hostname -I
+   
    39  apt install netstat
+   
    40  apt update
+   
    41  netstat -ntulp | grep LISTEN
+   
    42  cat /etc/hosts
+   
    43  vi /etc/hosts
+   
    44  clear
+   
    45  ls
+   
    46  apt update
+   
    47  history
