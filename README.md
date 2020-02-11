@@ -4,8 +4,6 @@
 https://www.katacoda.com/courses/ubuntu/playground
 
 
-
-
     1  apt update
     
     2  clear
