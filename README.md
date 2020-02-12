@@ -30,6 +30,9 @@ Monolith = One large executable that contains all parts of the application
 Kube Master = Server that controls the kubernetes cluster
 
 
+Deployments = way to automate the management of your pods. A deployment allows you to specify a desired state a set of pods.(Scaling, Rolling updates,Self healing)
+
+
 
 
 
@@ -192,6 +195,21 @@ kubectl get pods -o wide
 Get the IP address of one of the nginx pods, then contact that nginx pod from the busybox pod using the nginx pod's IP address:
 
 kubectl exec busybox -- curl $nginx_pod_ip
+
+
+
+
+
+Get a list of system pods running in the cluster:
+
+
+kubectl get pods -n kube-system
+
+
+Check the status of the kubelet service:
+
+sudo systemctl status kubelet
+
 
 
 
