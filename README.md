@@ -1,6 +1,29 @@
 # k8s
 
 
+
+
+service = Provides network acces to a dynamically chnaging group of pods
+
+Conrainerd = container run time
+
+kubelet = Agent that handles running containetes on a Node
+
+etcd = provides distributed data storage about the cluster stage
+
+Container run time = Software used to run containers on a system
+
+Pod = A group of one or more containers in Kubernetes that shares storage and an IP address in a Kubernetes cluster
+
+Microservices = Small, independent services that work together to make up an application
+
+Monolith = One large executable that contains all parts of the application
+
+Kube Master = Server that controls the kubernetes cluster
+
+
+
+
 https://www.katacoda.com/courses/ubuntu/playground
 
 
