@@ -214,6 +214,51 @@ sudo systemctl status kubelet
 
 
 
+Deployment example :
+
+```
+cat <<EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.4
+        ports:
+        - containerPort: 80
+EOF
+
+```
+
+
+Get a list of deployments:   kubectl get deployments
+
+Get more information about a deployment: kubectl describe deployment nginx-deployment
+
+Get a list of pods: kubectl get pods
+
+
+
+
+
+
+
+
+
+
 # kube-node1
 
 
