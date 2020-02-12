@@ -7,7 +7,13 @@ Conrainerd = container run time
 
 kubelet = Agent that handles running containetes on a Node
 
-etcd = provides distributed data storage about the cluster stage
+etcd = provides distributed synchronized data storage about the cluster stage
+
+kube-apiserver = servers the k8s api ,primary interface for the cluster
+
+kube-controller-manager = Bundles several components into one package.
+
+Kube-scheduler = Bundles serveral components into one package
 
 Container run time = Software used to run containers on a system
 
