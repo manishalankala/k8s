@@ -117,6 +117,23 @@ kubectl describe pod nginx
 kubectl delete pod nginx
 
 
+kubectl get nodes
+
+kubectl describe nodes
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # kube-node1
 
 
