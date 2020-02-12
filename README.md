@@ -123,13 +123,65 @@ kubectl describe nodes
 
 
 
+Checking pod to pod communication
 
 
+Create a deployment with two nginx pods:
+
+```
+cat << EOF | kubectl create -f -
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx
+  labels:
+    app: nginx
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx:1.15.4
+        ports:
+  
+```
 
 
+Create a busybox pod
+
+```
+cat << EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox
+spec:
+  containers:
+  - name: busybox
+    image: radial/busyboxplus:curl
+    args:
+    - sleep
+    - "1000"
+EOF
+
+```
 
 
+Get the IP addresses of your pods
 
+kubectl get pods -o wide
+
+
+Get the IP address of one of the nginx pods, then contact that nginx pod from the busybox pod using the nginx pod's IP address:
+
+kubectl exec busybox -- curl $nginx_pod_ip
 
 
 
