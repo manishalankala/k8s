@@ -1,9 +1,7 @@
 # k8s
 
 
-
-
-service = Provides network acces to a dynamically chnaging group of pods
+Service = Provides network acces to a dynamically chnaging group of pods
 
 Conrainerd = container run time
 
@@ -37,9 +35,16 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 ``
+
+sudo apt-get install lsb-core lsb
+
+sudo apt-get install curl wget software-properties-common nmap netstat
+
 sudo apt-get update
 
 sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
+
+
 
 sudo apt-mark hold docker-ce
 
@@ -57,6 +62,59 @@ sudo apt-get install -y kubelet=1.12.7-00 kubeadm=1.12.7-00 kubectl=1.12.7-00
 
 sudo apt-mark hold kubelet kubeadm kubectl
 
+
+sudo kubeadm init --pod-network-cidr=10.244.0.0/16
+
+mkdir -p $HOME/.kube
+
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+kubectl version (if success full configured clientversion and serverion version are available)
+
+
+The kubeadm init command should output a kubeadm join command containing a token and hash. Copy that command and run it with sudo on both worker nodes
+
+sudo kubeadm join $some_ip:6443 --token $some_token --discovery-token-ca-cert-hash $some_hash
+
+kubectl get nodes
+
+
+On all three nodes, run the following :
+
+echo "net.bridge.bridge-nf-call-iptables=1" | sudo tee -a /etc/sysctl.conf
+
+sudo sysctl -p
+
+Install Flannel in the cluster by running this only on the Master node:
+
+kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+
+kubectl get nodes (you can see all 3 nodes are on Status -ready state )
+
+kubectl get pods -n kube-system (All the backend pods run on the kube-system namespace,  three pods with flannel in the name, and all three should have a status of Running.)
+
+
+```
+cat << EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx
+spec:
+  containers:
+  - name: nginx
+    image: nginx
+EOF
+
+```
+
+kubectl get pods
+
+kubectl describe pod nginx
+
+kubectl delete pod nginx
 
 
 # kube-node1
@@ -72,6 +130,12 @@ sudo add-apt-repository \
    stable"
 ``
 
+
+
+sudo apt-get install lsb-core lsb
+
+sudo apt-get install curl wget software-properties-common nmap netstat
+
 sudo apt-get update
 
 sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu
@@ -91,6 +155,10 @@ sudo apt-get update
 sudo apt-get install -y kubelet=1.12.7-00 kubeadm=1.12.7-00 kubectl=1.12.7-00
 
 sudo apt-mark hold kubelet kubeadm kubectl
+
+
+
+
 
 
 
@@ -108,6 +176,11 @@ sudo add-apt-repository \
    $(lsb_release -cs) \
    stable"
 ``
+
+
+sudo apt-get install lsb-core lsb
+
+sudo apt-get install curl wget software-properties-common nmap netstat
 
 
 sudo apt-get update
