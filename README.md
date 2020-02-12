@@ -5,7 +5,7 @@ Service = Provides network acces to a dynamically chnaging group of pods
 
 Conrainerd = container run time
 
-kubelet = Agent that handles running containetes on a Node
+
 
 etcd = provides distributed synchronized data storage about the cluster stage
 
@@ -14,6 +14,10 @@ kube-apiserver = servers the k8s api ,primary interface for the cluster
 kube-controller-manager = Bundles several components into one package.
 
 Kube-scheduler = Bundles serveral components into one package
+
+kubelet = Agent that handles/executes running containers on a Node
+
+kube-proxy = handles network communication between nodes by adding firewall routing rules.
 
 Container run time = Software used to run containers on a system
 
