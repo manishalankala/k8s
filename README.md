@@ -354,6 +354,45 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 
 
+Kubernetes Services :
+
+Create a NodePort service on top of your nginx pods
+
+```
+
+cat << EOF | kubectl create -f -
+kind: Service
+apiVersion: v1
+metadata:
+  name: nginx-service
+spec:
+  selector:
+    app: nginx
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30080
+  type: NodePort
+EOF
+
+```
+
+![image](https://user-images.githubusercontent.com/33985509/74417861-bbe1bf80-4e47-11ea-811d-67dbcb6cd188.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
