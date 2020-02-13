@@ -297,6 +297,25 @@ Since this is a NodePort service, you should be able to access it using port 300
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # kube-node1
 
 
@@ -516,3 +535,29 @@ https://www.katacoda.com/courses/ubuntu/playground
    
    49 Kubectl get nodes
    
+   
+   
+   
+   
+   
+   
+   Sample Microservice example
+   
+   cd ~/
+git clone https://github.com/linuxacademy/robot-shop.git
+
+
+Create a namespace and deploy the application objects to the namespace using the deployment descriptors from the Git repository:
+
+kubectl create namespace robot-shop
+
+kubectl -n robot-shop create -f ~/robot-shop/K8s/descriptors/
+
+Get a list of the application's pods and wait for all of them to finish starting up:
+
+kubectl get pods -n robot-shop -w   
+
+
+Once all the pods are up, you can access the application in a browser using the public IP of one of your Kubernetes servers and port 30080:
+
+http://$kube_server_public_ip:30080
