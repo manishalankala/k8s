@@ -33,6 +33,8 @@ Kube Master = Server that controls the kubernetes cluster
 Deployments = way to automate the management of your pods. A deployment allows you to specify a desired state a set of pods.(Scaling, Rolling updates,Self healing)
 
 
+services = allows you to dynamically access a group of replica pods. So a service creates an abstration layer on top of a set of replica pods. we can access the service rather than accessing the pods directly .
+
 
 
 
