@@ -1,6 +1,94 @@
 # k8s
 
 
+Contents
+| ------- |
+Application Lifecycle Management 8% |
+Installation, Configuration & Validation 12% |
+Kubernetes Core Concepts 19% |
+Kubernetes Networking 11% |
+Kubernetes Scheduling 5% |
+Kubernetes Security 12% |
+Kubernetes Cluster Maintenance 11% |
+Kubernetes Logging / Monitoring 5% |
+Kubernetes Storage 7% |
+Kubernetes Troubleshooting 10% |
+
+
+
+
+UNDERSTAND PODS
+https://kubernetes.io/docs/concepts/workloads/pods/pod/
+https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+
+UNDERSTAND AND MANAGING CONTAINER STATE USING DEPLOYMENT
+Replica Sets 
+https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+ReplicationController
+https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+Daemon Sets
+https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+Rolling Updates and Rollback
+
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+
+StatefulSets
+https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+Jobs and Cronjobs
+https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+DEEP UNDERSTANDING ABOUT SERVICES
+Services
+https://kubernetes.io/docs/concepts/services-networking/service/
+https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
+DNS for Services and Pods
+https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
+Ingress
+https://kubernetes.io/docs/concepts/services-networking/ingress/
+DETAILED UNDERSTANDING ABOUT VOLUMES
+Volumes and Persistent Volumes
+https://kubernetes.io/docs/concepts/storage/volumes/
+https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+Config Maps
+POD SCHEDULING
+Assigning Pods to Nodes
+https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+Taints and Tolerations
+https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+Secrets
+https://kubernetes.io/docs/concepts/configuration/secret/
+Organising Cluster Access using kubeconfig files
+https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/
+Schedular
+https://kubernetes.io/docs/concepts/configuration/scheduler-perf-tuning/
+LOGGING ARCHITECTURE
+https://kubernetes.io/docs/concepts/cluster-administration/logging/
+MOST IMPORTANT – LOTS OF PRACTICE AND….
+kubectl Cheat Sheet
+https://kubernetes.io/docs/reference/kubectl/cheatsheet/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Service = Provides network acces to a dynamically chnaging group of pods
 
 Conrainerd = container run time
