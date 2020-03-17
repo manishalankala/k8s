@@ -16,48 +16,21 @@ Kubernetes Troubleshooting 10% |
 
 
 
-
-UNDERSTAND PODS
-https://kubernetes.io/docs/concepts/workloads/pods/pod/
-
-https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
-
-UNDERSTAND AND MANAGING CONTAINER STATE USING DEPLOYMENT
-
-Replica Sets 
-https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
-
-ReplicationController
-
-https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
-
-Daemon Sets
-
-https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
-
-
-Rolling Updates and Rollback
-
-https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
-
-StatefulSets
-
-https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
-
-
-Jobs and Cronjobs
-
-https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
-
-https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
-
-DEEP UNDERSTANDING ABOUT SERVICES
-
-Services
-https://kubernetes.io/docs/concepts/services-networking/service/
-
-https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
-
+Table | Links
+------- | ----
+UNDERSTAND PODS | https://kubernetes.io/docs/concepts/workloads/pods/pod/
+UNDERSTAND PODS | https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+UNDERSTAND AND MANAGING CONTAINER STATE USING DEPLOYMENT | 
+Replica Sets  | https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+ReplicationController | https://kubernetes.io/docs/concepts/workloads/controllers/replicationcontroller/
+Daemon Sets | https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/
+Rolling Updates and Rollback | https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+StatefulSets | https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/
+Jobs and Cronjobs | https://kubernetes.io/docs/concepts/workloads/controllers/jobs-run-to-completion/
+Jobs and Cronjobs | https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+DEEP UNDERSTANDING ABOUT SERVICES | 
+Services |  https://kubernetes.io/docs/concepts/services-networking/service/
+Services |  https://kubernetes.io/docs/concepts/services-networking/connect-applications-service/
 DNS for Services and Pods
 
 https://kubernetes.io/docs/concepts/services-networking/dns-pod-service/
