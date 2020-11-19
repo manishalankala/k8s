@@ -47,3 +47,29 @@ InitialResources - sets default resource limits to the resources for a container
 LimitRanger - sets defaults for container requests and limits, or enforce upper bounds on certain resources (no more than 2GB of memory, default to 512MB)
 
 ResourceQuota - calculates and denies a number of objects (pods, rc, service load balancers) or total consumed resources (cpu, memory, disk) in a namespace.
+
+
+## ectd
+
+OpenAPI schema populates the apiserver's configuration.
+
+kube-apiserver then iterates over all the API groups specified in the schema and configures a storage provider for each that serves as a generic storage abstraction.
+
+
+
+## Initializers
+
+An initializer is a controller that is associated with a resource type and performs logic on the resource before it's made available to the outside world. 
+
+
+
+
+## Deployments controller
+
+Deployment is really just a collection of ReplicaSets, and a ReplicaSet is a collection of Pods.
+
+A controller is an asychronous script that works to reconcile the current state of the Kubernetes system to a desired state. 
+
+Each controller has a small responsibility and is run in parallel by the kube-controller-manager component.
+
+ Deployment record is stored to etcd and initialized, it is made visible via kube-apiserver. 
