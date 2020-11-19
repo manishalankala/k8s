@@ -1,5 +1,5 @@
 
-
+# kubectl
 
 
 ## Validation and generators
@@ -37,4 +37,13 @@ Node, which ensures that node clients, i.e. the kubelet, can only access resourc
 
 what should and should not be permitted
 
-Each controller is stored as a plugin in the plugin/pkg/admission directory, and is made to satisfy a small interface. Each one is then compiled into main kubernetes binary itself
+Each controller is stored as a plugin in the plugin/pkg/admission directory, and is made to satisfy a small interface. 
+
+Each one is then compiled into main kubernetes binary itself
+
+
+InitialResources - sets default resource limits to the resources for a container based on past usage
+
+LimitRanger - sets defaults for container requests and limits, or enforce upper bounds on certain resources (no more than 2GB of memory, default to 512MB)
+
+ResourceQuota - calculates and denies a number of objects (pods, rc, service load balancers) or total consumed resources (cpu, memory, disk) in a namespace.
