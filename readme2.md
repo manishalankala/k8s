@@ -73,3 +73,15 @@ A controller is an asychronous script that works to reconcile the current state 
 Each controller has a small responsibility and is run in parallel by the kube-controller-manager component.
 
  Deployment record is stored to etcd and initialized, it is made visible via kube-apiserver. 
+
+
+## informer
+
+
+An informer is a pattern that allows controllers to subscribe to storage events and easily list resources they're interested in
+
+
+
+Once the algorithm finds a node, the scheduler then creates a Binding object whose Name and UID match the Pod, 
+
+and whose ObjectReference field contains the name of the selected Node. This is then sent to the apiserver via a POST request.
