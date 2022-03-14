@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-blue
+  namespace: myapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: app
+      version: blue
+  template:
+    metadata:
+      labels:
+        app: app
+        version: blue
+    spec:
+      containers:
+      - name: app-container
+        image: vipindevops/blue-green:tagname:1.0
+        ports:
+        - containerPort: 80
