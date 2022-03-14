@@ -1,0 +1,38 @@
+
+# The version for Deployment should be apps/v1
+apiVersion: apps/v1
+kind: Deployment
+#specify the metadata including the name of the deployment
+metadata:
+  name: myapp-demo
+
+#define the specifications for the deployment
+spec:
+  #define the number of pods (application instances) which is set to 2
+  replicas: 2
+  #selector label for the pod application
+  selector:
+    matchLabels:
+      app: myapp-pod
+
+  #define template for the pod
+  template:  
+  #specify the metadata for the pod including the name and the labels.
+    metadata:
+      name: myapp-pod
+      #this label selector will be used to be selected by the deployment and the service
+      labels:
+        app: myapp-pod
+
+    #define the specification for the container to be created from the docker image
+    spec:
+      containers:
+        #specify the name of the container created
+        - name: myapp-container
+          #specify the docker image to be pulled
+          image: mydockerapp/myapp
+          imagePullPolicy: IfNotPresent
+          #specify the container Port which must be equal to the port exposed in the docker image
+          #the port exposed in the docker image is 5000 and therefore the container Port will be 5000
+          ports:
+          - containerPort: 5000
