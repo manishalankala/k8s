@@ -14,9 +14,9 @@ spec:
   selector:
     matchLabels:
       app: myapp-pod
-      #version: 
-      #release: 
-      #slot: green
+     #version: 
+     #release: 
+     #slot: green
       
   #define template for the pod
   template:  
@@ -26,9 +26,9 @@ spec:
       #this label selector will be used to be selected by the deployment and the service
       labels:
         app: myapp-pod
-        #version: 
-        #release: 
-        #slot: green
+       #version: 
+       #release: 
+       #slot: green
 
     #define the specification for the container to be created from the docker image
     spec:
