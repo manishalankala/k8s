@@ -14,7 +14,7 @@ It contains a complete list of the specifications for the entire deployment and 
 We define the number of pods and set it to 2. This means that there will be two instances of our application running.
 
 ### spec.selector.matchLabels: 
-This selects the pod to be used in the Deployment, using the pod label which is app: pixellib-pod.
+This selects the pod to be used in the Deployment, using the pod label which is app: myapp-pod.
 
 ### spec.template.metadata: 
 We define metadata for the pod. spec.template.metadata.name assigns a name to the pod, which is pixellib-pod. 
