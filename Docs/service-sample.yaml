@@ -1,0 +1,22 @@
+# Create API Service
+# Specify the version for the service
+apiVersion: v1   
+#set the kind as Service 
+kind: Service
+#specify the name of the service
+metadata:
+  name: myapp-service
+
+#define the specifications for the Service creation
+spec:
+  #define the type as LoadBalancer
+  type: LoadBalancer
+  #specify the ports for running the service
+  ports:
+    #the service will run on port 80 mapped to the target port 5000 exposed as container port
+    - port: 80
+      targetPort: 5000
+
+  #service selects the targeted pod in the cluster
+  selector:
+    app: myapp-pod 
