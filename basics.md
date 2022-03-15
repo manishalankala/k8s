@@ -1,11 +1,10 @@
 
 
-Cluster -   ```
-A logical grouping of all components within a cluster.
+Cluster -   ``` A logical grouping of all components within a cluster.```
+
 ```
 
-A logical grouping of all components within a cluster.
-```
+
 
 Namespace
 ```
