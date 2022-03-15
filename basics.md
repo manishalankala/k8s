@@ -244,3 +244,18 @@ kubectl get endpoints
 
 Endpoint Slices break up Endpoints into smaller manageable segments. Each Endpoint Slice has a limit of 100 pods.
 ```
+
+
+```
+Selectors are a way of selecting one or more Kubernetes
+
+there are 3 types of selectors:
+Label Selector : Select K8s objects based on the applied label example env: prod
+Field Selector : Select K8s objects based on object data eg. Metadata, Status
+Node Selector  : Select nodes for very specific pod placement
+
+kubectl get pods --show-labels
+
+kubectl label pods apache-web owner=devops
+
+```
