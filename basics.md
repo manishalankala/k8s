@@ -257,5 +257,220 @@ Node Selector  : Select nodes for very specific pod placement
 kubectl get pods --show-labels
 
 kubectl label pods apache-web owner=devops
+```
+
+Recommended labels
+```
+app.kubernetes.io/name
+The name of the application
+app.kubernetes.io/instance
+A unique name identifying the instance of an application
+app.kubernetes.io/version
+The current version of the application (e.g., a semantic version,
+revision hash, etc.)
+app.kubernetes.io/component
+The component within the architecture
+app.kubernetes.io/part-of
+The name of a higher level application this one is part of
+app.kubernetes.io/managed-by
+The tool being used to manage the operation of an application
+app.kubernetes.io/created-by
+The controller/user who created this resource
+```
+
+Label selector 
+```
+K8 objects like Services and ReplicaSets will target pods based on label selectors
+
+You can use selector in the KubeCTL command line with --selector or it alias -I
+
+kubectl get pods --selector env=development
+kubectl get pods -l env=development
+```
+
+Annotations
+```
+Kubernetes annotations allows you to attach arbitrary non-identifying metadata to
+Clients (eg. tools and libraries) can and my require this annotation in order to work.
+```
+
+Podspec
+```
+PodSpec is a configuration file that describes a pod.
+
+The spec section will define
+• multiple containers
+• The name of the container
+• The image
+• The command to run on startup The port the container will operate on
+• The restart policy
 
 ```
+
+grpc
+```
+RPC is a framework of communication in distributed systems. It allows one program on machine to communication with
+another program on remote machine without knowing its remote. The concept of RPC has been around since 1970s.
+
+GRPC is a modern open source high performance Remote Procedure Call (RPC)
+framework that can run in any environment. GRPC was initially created by Google.
+
+GRPC can connect services in and across data centers with pluggable support for:
+• load balancing
+• tracing
+• health checking
+• authentication
+
+
+GRPC works by:
+• Installing a gRPC library for your program.
+• Defining a Protobuf file that describe the data structure.
+• Profobuf files have .proto exentsion
+Writing code that works with gRPC
+
+```
+
+
+Kubelet
+```
+is responsible for pod internal API communication via the API Server.
+Kubelet is a node agent that runs on every single node (control plane and workers).
+
+The Kubelet perform the following tasks:
+• watches for pod changes
+• Configures the Container Runtime to
+• Pull images
+• Create namespaces
+• Run containers
+
+Kubelet uses PodSpec files to determine
+what images to pull and containers to run.
+
+Kubelet
+will continuously monitor
+Pods of any kinds of changes.
+
+Kubelet
+will
+send back HTTPS
+requests to API server containers
+logs and execution requests
+
+Kubelet
+can interact with a Container
+Runtime Interface (CRI) also using gPRC
+
+Kubelet
+can interact with
+Storage
+through the Container Storage
+Interface (CSI) using GRPC
+
+```
+
+
+Kubectl
+```
+KubeCTL is a command line tool lets you control Kubernetes clusters
+
+kubectl looks for a file named config in the $HOME/.kube directory
+
+annotation - key value data that can be applied to resources
+apply - Executes manifest files to create, modify K8 resources
+auth - Inspect if you are authorized to perform an action
+autoscale - Create an autoscaler that automatically chooses and sets the number of pods that run
+cp - Copy files and directories to and from containers
+create – Create specific K8 cluster-level resources: ConfigMap, Deployment, Job, Namespace, Role,
+delete – Delete resources filenames, stdin, resources and names, or by resources and label select
+describe – Show details of a specific resource or group of resources
+diff – diffs the online configuration with local config
+edit - Edit a resource from the default editor. Edit a deployed manifest file and apply the changes.
+exec – Execute a command within a container
+expose – Expose as resource as Kubernetes service
+get – generally used to get the status of an existing Kubernetes resource
+kustomize – Print a set of API resources generated from instructions in a kustomization.yaml file
+label – update labels on a resource
+logs – print the logs for a container in a pod or specific resource
+patch – Update fields of a resource using strategic merge patch, a JSON merge patch, or a JSON patch
+port-forward – Forward one or more local ports to a pod.
+proxy – Creates a proxy server between localhost and the Kubernetes API Server
+run – Create and run a container image in a pod
+scale – Set a new size for a Deployment, ReplicaSet, Replication Controller, or StatefulSet
+
+Flags
+generally start with two hyphens. eg. -server
+• Sometimes flags have abbreviations with single hypen eg. -s
+• Available flags will vary based on command
+• Sometimes flags can be assigned values or do not expect a value.
+
+
+```
+
+
+
+Resource types
+```
+Bindings
+Componentstatuses (cs)
+Configmaps (cm)
+Endpoints (ep)
+Events (ev)
+Limitranges (limits)
+Namespaces (ns)
+Nodes (no)
+Persistentvolumeclaims (pvc)
+Persistentvolumes (pv)
+Pods (po)
+Podtemplates
+Replicationcontrollers (rc)
+Resourcequotas (quota)
+Secrets
+Serviceaccounts (sa)
+Services (svc)
+Mutatingwebhookconfigurations
+Validatingwebhookconfigurations
+Customresourcedefinitions
+Apiservices
+Controllerrevisions
+Daemonsets (ds)
+Deployments (deploy)
+Replicasets (rs)
+Statefulsets (sts)
+Tokenreviews
+Localsubjectaccessreviews
+Selfsubjectaccessreviews
+Selfsubjectrulesreviews
+Subjectaccessreviews
+Horizontalpodautoscalers
+Cronjobs (cj)
+Jobs
+Certificatesigningrequests (csr)
+Leases
+Endpointslices
+Events (ev)
+Ingresses (ing)
+Flowschemas
+Prioritylevelconfigurations
+Ingressclasses
+```
+
+
+minikube
+```
+
+Minikube
+sets up a local single-node Kubernetes cluster
+macOS, Linux, and Windows for learning purposes.
+
+Supports the latest Kubernetes release
+Cross-platform
+Deploy as a VM, a container, or on bare-metal
+• Multiple container runtimes
+Docker API endpoint for blazing fast image pushes
+Advanced features such as LoadBalancer, filesystem
+mounts, and FeatureGates
+Addons for easily installed Kubernetes applications
+Supports common Cl environments
+
+```
+
