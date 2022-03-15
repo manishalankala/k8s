@@ -581,3 +581,15 @@ or whole operating-system-level virtualization, including Linux Containers (LXC)
 
 ```
 
+
+
+Backing Store and etcd
+```
+Components of a Kubernetes cluster include: pods, nodes, control plane, and
+volumes, and each of these needs a level of protection in case of disaster
+Kubernetes resources are stored in an etcd (but could be backed by MariaDB).
+Application data is stored in persistent volumes for applications running on the cluster.
+
+etcd is a strongly consistent, distributed key-value store that provides a reliable way to store data that needs to be accessed
+by a distributed system or cluster of machines.
+```
