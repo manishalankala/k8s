@@ -914,5 +914,290 @@ Iptables - generic firewalling software that allows you to define rulesets
 Nftables – successor to iptables, more flexible, scalable and performance packet classification
 IPVS – specifically designed for load balancing, uses hash mapping generic firewalling software that allows you to define rulesets
 
+```
+
+
+IP Tables
+
+```
+What is a Userspace?
+Modern computer operating system segregates virtual memory into kernel space and user space
+Kernel space is reserved for running a privileged operating system kernel, kernel extensions, and device drivers.
+User space is the memory area where application software and some drivers execute.
+
+What is
+IP Tables? iptables is a user-space utility program that allows a system administrator to configure the IP packet filter rules of the Linux kernel firewall
+iptables applies to IPV4
+ip6tables to IPV6
+
+
+Iptables are simply virtual firewalls on Linux
+
+It is common to and modify iptables to restrict access based on ports and protocols
+iptables -I INPUT 1 -p tcp --dport 80 -j ACCEPT
+
+```
+
+IPVS
+```
+IP Virtual Server (IPVS) uses the NetFilter framework.IPVS also incorporates LVS (Virtual Linux Server)
+
+Iptables struggles to scale to tens of thousands of services as Iptables is bottlenecked at 5000 nodes per cluster
+
+IPVS is specifically designed for load balancing and uses more efficient data structures (hash tables) allowing for almost unlimited scale under the hood
+
+In the future the Kube Proxy will default to using IPVS.
+
+```
+
+Various Proxies
+```
+What is a proxy? a server application that acts as an intermediary between a client requesting a resource and the server providing that resource
+
+There are many kinds of proxies you will encounter in Kubernetes:
+Kubectl proxy – proxies from a localhost address to the Kubernetes apiserver
+Apiserver proxy- a bastion built into the apiserver, connects a user outside of the cluster to cluster IPs which otherwise might not be reachable
+Kube proxy – runs on each node and used to reach services
+Proxy/Load balancer in front of API servers – acts as load balancer if there are several apiserver
+Cloud Load Balancers - for external cluster traffic to reach pods
+Forward Proxy: A bunch of servers egressing traffic have to pass through the proxy first
+Reverse Proxy: Ingress traffic trying to reach a collection of servers
+
+```
+
+Kubeproxy
+
+```
+kube-proxy is a network proxy that runs on each node in your cluster. It is designed to load balance traffic to pods.
+kube-proxy maintains network rules on nodes. These network rules allow network communication to your Pods from network sessions inside or outside of your cluster.
+
+kube-proxy uses the operating system packet filtering layer (if there is one and it's available). Otherwise, kube-proxy forwards the traffic itself.
+
+Kube-proxy can run in three modes:
+1. ipt(default). - Suited for simple us
+2. Ipvs - Suites for 1000+ services.
+3. Userspace (legacy) - Not recommended for use
+
+```
+
+
+
+Service Mesh
+
+```
+A Service Mesh manages service-to-service communication for microservice architectures.
+A service meaning "an application" not a K8s Service component.
+A service mesh is an infrastructure layer that can provide the following: Reliability (Traffic Management, Retries, Load Balancing),Observability (Metrics, Traces),Security (TLS Certifications, Identity)
+
+The installation of the proxies into pods as well as the proxies capabilities is managed by the Service Mesh Control Plane
+
+Service
+Meshes use a sidecar pattern.
+A proxy container is installed on each pod. Application containers must pass through the proxy before leaving the egressing the pod.
+
+Available Service Meshes for Kubernetes
+
+Istio is the currently most popular service mesh for Kubernetes due to its highly configurable nature.
+Istio uses Envoy as its proxy. Istio is a not a CNCF project.
+
+Envoy is an open-source edge and service proxy. Multiple Service Meshes uses Envoy as its proxy.
+Envoy is a graduated CNCF project.
+
+Kuma is a CNCF sandbox project that uses Envoy as its proxy.
+
+Linkerd is a CNCF graduated project is known for having strong security and "it just works".
+Linkerd does not use Envoy, instead it uses a simple and ultralight "micro-proxy" called Linkerd2-proxy
+
+Consul is an open-source service mesh by Hashicorp. Its not a CNCF project.
+Consul is offered by Hashicorp as managed cloud Service Mesh.
+
+
+
+
+Envoy
+
+Envoy is a self contained process that is designed to run alongside every application server.
+Envoy can be installed on a Virtual Machine or as a Container.
+
+Envoy
+supports a wide range of functionality
+L3/L4 filter architecture
+HTTP L7 filter architecture:
+First class HTTP/2 support
+HTTP/3 support
+HTTP L7 routing
+8RPC support
+Service discovery and dynamic configuration
+Health checking
+Advanced load balancing
+Front/edge proxy support
+Best in class observability
+
+
+In practice you likely will not install and manually configure Envoy, You would allow a Service Mesh control plane to install into your pods
+A Service Mesh will may come with a Ul or configuration files to configure your envoy
+
+```
+
+
+
+
+NAT
+```
+What is Network Address Translation (NAT)?
+a method of mapping an IP address space into another by modifying network address information in
+the IP header of packets while they are in transit across a traffic routing device
+
+```
+
+
+EthO and Network Namespace
+```
+What is an Ethernet Device?
+An Ethernet Device is a software and/or hardware technology that allows a server
+to communicate on a computer network. A Network Interface Card (NIC) are
+commonly used to establish a wired connection to a network.
+
+Cloud Service Providers (CSPS), have Virtual NICS for your Virtual Machines (VMs) to connect to the Virtual Network
+
+What is a Network Namespace?
+etho represents the first Ethernet interface attached to your
+Virtual Machine.
+
+A network interface is an abstraction on top of the ethernet
+interface to provide a logical networking stack with its own
+routes, firewall rules, and network devices.
+
+Linux by default has one Network Namespace called the Root
+Network Space and this is what programs will use by default.
+
+
+ifconfig
+To create modify or view Network Namespaces the ip netns command can be used.
+sudo ip netns add nsl
+ip netns ns1
+
+```
+
+
+Cluster Networking
+```
+Kubernetes has the following opinions about cluster networking:
+• all Pods can communicate with all other Pods without using NAT
+• all Nodes can communicate with all Pods without using NAT.
+the IP that a Pod sees itself as, is the same IP that others see it as
+
+NATS are and can be used in Kubernetes, even though of the above contradiction
+
+
+There are 4 broad types of network communication for clusters:
+
+1. Container-to-Container : Containers all in the same pod have the same IP address and port space.
+Containers can communicate with each other via localhost via different ports
+
+2. Pod-to-Pod :
+
+For Pod to Pod communication on the same on the node Veth is used to communication from the Pod
+Network Namespace to the Root Network Namespace.
+
+In the Root Network Namespace a bridge is used allow all Pod Network Namespaces to talk to other pods.
+
+Pods can see all other pods, and communicate using their IP addresses.
+
+Routing allows multiple networks to communicate independently and yet remain separate using a Router
+
+Bridging connects two separate networks as if they were a single network using a Bridge
+
+3. Pod-to-Service
+
+When a pod dies its IP Address changes and this can make communication hard if you are relying on the IP address for
+communication.
+
+A Service creates a virtualized IP (static IP) and then uses iptables which is installed on the Node to Network Address
+Translation (NAT) and Load Balancing to other pods.
+
+
+4. External-to-Service
+
+```
+
+
+Virtval Ethernet Devices (Veths)
+
+```
+veth devices are Virtual Ethernet devices.
+
+They can act as tunnels between network namespaces to create a bridge to a physical network device
+in another namespace, but can also be used as standalone network devices.
+Packets on one device in the pair are immediately received on the other device
+veth devices are always created in interconnected pairs
+
+You use the ip link command to create veth pairs
+
+ip link add <pl-name> netns <pl-ns> type veth peer <p2-name> netns <p2-ns>
+
+```
+
+Ingress/Egress From Internet to Cluster
+
+```
+Egress
+How pod traffic exits to the internet will be network specific.
+So in the case of AWS pods use the Amazon VPC Container
+Network Interface (CNI) plugin to be able to talk to your
+Virtual Private Cloud (VPC) and then egress out to the
+Internet Gateway (IGW) via route tables.
+
+Ingress
+For traffic to reach a pod, it travels to a service.
+From there a Service could be using:
+
+K8s Service with Type Load Balancer
+This will work with Cloud Controller Manager to
+implement a solution that works with a T4 (UDP/TCP)
+Load Balancer
+
+K8s Ingress
+It will use a Ingress Controller to work with a Cloud
+Service Provider load balancer eg. T4 or T7 (application
+load balancer)
+
+```
+
+Cluster Layer security
+```
+1. Components of the cluster
+Securing configurable cluster components
+Controlling access to the Kubernetes API
+Use Transport Layer Security (TLS) for all API traffic
+API Authentication
+API Authorization
+Controlling access to the Kubelet
+Controlling the capabilities of a workload or user at runtime
+Limiting resource usage on a cluster
+Controlling what privileges containers run with
+Preventing containers from loading unwanted kernel modules
+Restricting network access
+Restricting cloud metadata API access
+Controlling which nodes pods may access
+Protecting cluster components from compromise
+Restrict access to etcd
+Enable audit logging
+Restrict access to alpha or beta features
+Rotate infrastructure credentials frequently
+Review third party integrations before enabling them
+Encrypt secrets at rest
+Receiving alerts for security updates and reporting vulnerabilities
+
+2. Components in the cluster
+Securing
+the applications running within the cluster
+RBAC Authorization (Access to the Kubernetes API)
+Authentication
+Application secrets management (and encrypting them in etcd at rest)
+Ensuring that pods meet defined Pod Security Standards
+Quality of Service (and Cluster resource management)
+Network Policies
+TLS for Kubernetes Ingress
 
 ```
