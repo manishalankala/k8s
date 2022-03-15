@@ -232,3 +232,15 @@ You can apply system quota restrictions on a namespace to avoid overuse eg Mem, 
 
 If you don't provide a namespace for a component it will end up in the default namespace
 ```
+
+
+Endpoints
+```
+Endpoints track the IP Addresses of the pods assigned to a Kubernetes Service.
+When a service selector matches a pod label, The pod IP Address is added to the pool of endpoints
+Pods expose themselves to services via endpoints.
+
+kubectl get endpoints
+
+Endpoint Slices break up Endpoints into smaller manageable segments. Each Endpoint Slice has a limit of 100 pods.
+```
