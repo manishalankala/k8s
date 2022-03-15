@@ -1344,14 +1344,42 @@ RollingUpdate - Replaces one or multiple pods at a time
 Canary - Add new pods and route a subset of your users to the new server, if no bugs or errors occur, roll out
 changes to all pods
 
+
+
 Blue / Green - Deploy an exact copy of your entire infrastructure, swap the traffic and then terminate the old
 environment or rollback to old environment
+
+Blue / Green Deployment Is when you completely create a new
+environment of all components, and you send all traffic to the
+new (Green) environment, if its all okay, you then terminate the
+old (blue) environment. If anything goes wrong you rollback to
+blue and teardown green.
+Zero downtime
+No reduce availability
+Slow to deploy but faster than Canary
+If something goes wrong larger impact to users immediately
+Instantly rollback to previous infrastructure
+
+
+
 
 A/B Testing, Red / Black - Similar to Canary and Blue/Green but continuously keep the new environments
 running to test features on a subset of users
 
+Uses a Canary or Blue Green method of deployment but serves the new app
+(experimental features) to subset of users based on a set of load balancing rules.
+
+Uses a Canary or Blue Green method of deployment but serves the new app
+(experimental features) to subset of users based on a set of load balancing rules.
+
 Dark Launches - Similar to A/B Testing, except you use a feature flag to rollout new features, and rollback by
 turning off the feature in the software instead of reverting infrastructure changes
+
+Similar to A/B Testing, except A to B happens at the application layer (within the app code)
+• You want to test a feature on a subset of users,
+• You code a feature flag into your app to turn the new feature on or off
+If the users like the feature you leave it switched on, if they don't you turn it off.
+Doesn't require you to rollback at the infrastructure level. (fast rollback)
 
 
 Recreate - Terminate all running instances and recreate with Also known as an In-Place deploy
