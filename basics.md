@@ -96,3 +96,19 @@ Deployment
 ```
 Is a blueprint for a pod (think Launch Template)
 ```
+
+
+Manifest
+```
+A Manifest file is a document that is commonly used for customs to list the contents of
+cargo, or passengers. Its an itemized list of things.
+
+Manifest file is a generalized name for any Kubernetes Configuration File that define the
+configuration of various K8s components.
+
+all Manifest files with specific purposes:Deployment File,PodSpec File,Network Policy File
+Files can be written in either: yaml or json
+
+A manifest can contain multiple K8s component definitions/configurations.
+
+```
