@@ -499,3 +499,85 @@ platform-agnostic, lightweight wrapper that runs K3s in a docker container.
 It helps run and scale single or multi-node K3S clusters quickly without further
 setup while maintaining a high availability mode.
 ```
+
+Management layers
+```
+A management layer for running Kubernetes on other platforms or allows you to extend your control plane to multiple platform
+
+Weave Kubernetes Platform (WKP) - All of Weaves open-sources tools packaged as a platform so you can build out a GitOps enabled cluster.
+
+Rafay - Similar to OpenShift with a larger focus on governance and GitOps-based management for any K8s clusters running on anything (including OpenShift)
+
+VMWare Tanzu - Wherever vSphere runs, you can mange you can deploy and monitor Kubernetes clusters.
+
+Azure Arc - multi-cluster-management governing compute such as K8s from other CSPS or on-premise or the edge.
+
+Google Anthos - multi-cluster-management Is GKE being extended to mange clusters deployed to VMs on other cloud's or premise. Its focused on managing K8.
+
+Platform9 -  Similar to RayFay but relies more on third-party tooling instead of trying to leverage native functionality from public cloud service providers.
+
+
+Red Hat OpenShift Platform as a Service for K8s
+• Openshift is Kubernetes with a commercial platform by RedHat built on-top.
+• Kubectl is extended with additional functionality with the oc cli
+• quickly deploy local code to a remote OpenShift cluster via odo
+• A quality assurance pipeline built into the platform
+• Fixing critical bugs earlier instead of waiting for next K8s release
+• Using Redhat CoreOS (an operating system optimized for running containers)
+• OperatorsHub, an automated installation tool (one click marketplace)
+• Graphical Ul developer console
+• CodeReady workspaces, Cloud Developer Environment for Kubernetes
+
+Rancher Kubernetes Engine (RKE)
+• Runs entirely within Docker containers.
+• It works on bare-metal and virtualized servers.
+• RKE solves the problem of installation complexity, a common issue in the Kubernetes community.
+• Installation and operation of Kubernetes is both simplified and easily automated,
+• It's entirely independent of the operating system and platform you're running.
+• As long as you can run a supported version of Docker, you can deploy and run Kubernetes with RKE.
+
+```
+
+
+
+
+Container Runtime Interface (CRI)
+
+```
+Containerd
+
+Images you build with Docker aren't really "Docker images".
+• Docker now uses the containerd runtime
+your images are built in the standardized Open Container
+Initiative (OCI) format.
+
+CRI-O
+
+It
+allows Kubernetes to use any OCl-compliant runtime as the container runtime for running pods.
+Today it supports runc and Kata Containers as the container runtimes but any OCI-conformant
+runtime can be plugged in principle.
+```
+
+
+```
+What is a process?
+A process is an instance of a running program on Linux
+What is a CGroup?
+Control groups (cgroups) allows you to group processes to apply different kinds of limitations:
+Resource limiting
+- groups can be set to not exceed a configured memory limit, which also includes the file system cache
+Prioritization – some groups may get a larger share of CPU utilization or disk I/0 throughput
+Accounting
+- measures a group's resource usage, which may be used, for example, for billing purposes
+Control
+freezing groups of processes, their checkpointing and restarting
+
+Think of CGroups as a way to limit programs
+From overusing CPU, Memory or Storage.
+
+The primary design goal for cgroups was to provide a unified interface to manage processes
+or whole operating-system-level virtualization, including Linux Containers (LXC)
+
+```
+
