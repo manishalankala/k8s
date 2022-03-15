@@ -1,6 +1,6 @@
 -  ```    ```
 
- `Cluster` -   ``` A logical grouping of all components within a cluster.```
+- Cluster -   ``` A logical grouping of all components within a cluster.```
 
 - Namespace -  ``` A named logical grouping of Kubernetes components within a cluster.Used to Isolate different workloads on the same cluster.   ```
 
