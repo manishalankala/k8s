@@ -635,3 +635,49 @@ secret
 vsphereVolume
 
 ```
+
+Persistent Volume
+
+```
+A piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned using Storage Classes
+
+PV is similar to node in that is a cluster resource. PV does not reside within a node or pod.
+
+PVs are volume plugins like Volumes, but have a lifecycle independent of any individual Pod that uses the
+This API object captures the details of the implementation of the
+storage, be that NFS, ISCSI, or a cloud-provider-specific storage system
+
+mounting pv directly to a pod is not allowed and is against the Kubernetes design principles.
+It would cause tight coupling below the pod volume and the underlying storage.
+Persistent Volume Claims ensures decoupling
+
+```
+
+```
+A storage class is way of defining a class of storage that is backed by a provisioner.
+
+Storage Class can be used by many Persistent Volumes.
+
+Storage class contains:
+Provisioner – who is storage? Eg. Amazon EBS
+Parameters - what type of storage of Amazon EBS to use
+reclaimPolicy
+- If the pod is gone does the volume remain?
+```
+
+
+Persistent Volome Claim
+
+```
+A Persistent Volume Claim (PVC) is used to decouple Persistent
+Volumes from pods. A PVC asked for a type of storage, and if a PV that
+meets the criteria is matched, the a PV is Claimed and Bound.
+PVCS similar to a Pod requesting resources from a Node
+Pods consume node resources
+PVCS consume PV resources
+Pods can request specific levels of resources (CPU and Memory)
+PVCS can request specific size and access modes (e.g., they can
+be mounted ReadWriteOnce, ReadOnlyMany or
+ReadWriteMany, see AccessModes).
+
+```
