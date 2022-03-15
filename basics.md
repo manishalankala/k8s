@@ -776,3 +776,143 @@ exposes a service externally to the cluster by means of the target nodes IP
 address and the NodePort. NodePort is the default setting if the port field is not specified.
 
 ```
+
+
+Load Balancer 
+```
+A Load Balancer service type allows you to use an External Load Balancer.
+The External Load Balancer handles the routings and traffic distribution logic
+
+An external load balancer would be from a managed third-party cloud service.
+Eg. AWS Network Load Balancer (NLB)
+
+Load Balancer type is well suited for production workloads.
+Generally its recommended to use Kubernetes Ingress
+
+```
+
+Headless 
+
+```
+A headless service is a service with no ClusterIP address
+
+A headless service does not provide load balancing or proxying
+Headless are useful when you are dealing with a Stateful application (reads and writes) and you need writes to go to a specific pod.
+
+Headless Service is needed to manage network identity of the stateful pods by assigning
+DNS Record to each pod so you can route traffic to a DNS Hostname.
+
+```
+
+
+External Name
+
+```
+ExternalName Services as the same as ClusterlP Service with the exception of instead returning a StaticIP it returns a CNAME record.
+
+What is a CNAME record? - Canonical Name (CName) record is a DNS record that maps one doman name (an alias) to another name (canonical name)
+
+```
+
+
+Kubernetes Ingress
+
+```
+Ingress exposes HTTP and HTTPS routes from outside the cluster to services within the cluster.
+Traffic routing is controlled by rules defined on the Ingress resource.
+
+The reason we use a K8s Ingress is so we can translate a custom domain on SSL to a service running within our K8s cluster.
+
+```
+
+DNS
+
+```
+
+What is a Domain Name System (DNS)?
+It is a service that is responsible for translating (or resolving) a service name to its IP address.
+
+CoreDNS is the default DNS server for Kuberentes and ensures pods and services haves Fully Qualified
+Domain Name (FQDN). Without CoreDNS the cluster communication would cease to work.
+
+FQDN?
+a domain name that specifies its exact location in the tree hierarchy, also known as an absolute domain.
+
+In-Tree Plugins (Internal Plugins)
+acl - enforces access control policies on source ip and prevents unauthorized access to
+DNS servers
+any - any gives a minimal response to ANY
+azure - enables serving zone data from Microsoft Azure DNS service
+cache - enables a frontend cache
+health - enables a health check endpoint
+log - enables query logging to standard output
+and many more...
+Out-of-Tree Plugins (External Plugins)
+git – pull git repositories
+alias – replaces zones apex CNAMES
+redisc – enables a networked cache using Redis
+Kubernetai – serve multiple Kubernetes within a Server
+
+
+CoreDNS pods are abstracted by a service object called kube-dns.
+
+Each pod (any pod, not just CoreDNS pods) has a resolv.conf file to help with DNS resolving.
+
+nslookup my-service-name
+# Server: 10.100.0.10
+# Address: 10.100.0.10#53
+# Name: kubernetes. default.svc.cluster.local
+# Address: 10.100.0.1
+
+```
+
+
+Probes
+```
+Liveness Probe :
+The kubelet uses liveness probes to know when to restart a container.
+For example, liveness probes could catch a deadlock, where an application is running, but unable
+to make progress. Restarting a container in such a state can help to make the application more
+available despite bugs.
+
+Readiness Probe :
+The kubelet uses readiness probes to know when a container is ready to start accepting traffic.
+A Pod is considered ready when all of its containers are ready.
+One use of this signal is to control which Pods are used as backends for Services.
+When a Pod is not ready, it is removed from Service load balancers.
+
+
+Startup Probe:
+The kubelet uses startup probes to know when a container application has started.
+If such a probe is configured, it disables liveness and readiness checks until it succeeds, making
+sure those probes don't interfere with the application startup.This can be used to adopt liveness checks on slow starting containers, avoiding them getting
+killed by the kubelet before they are up and running.
+
+```
+
+
+Network netfilter
+
+```
+The netfilter project enables:
+packet filtering
+network address and port translation (NAPT)
+Translation packet logging
+Userspace packet queueing
+other packet mangling
+
+
+The netfilter
+hooks are a framework inside the Linux kernel that allows kernel modules
+to register callback functions at different locations of the Linux network stack.
+
+The registered callback function is then called back for every packet that traverses the
+respective hook within the Linux network stack.
+
+Projects build ontop of Netfilter:
+Iptables - generic firewalling software that allows you to define rulesets
+Nftables – successor to iptables, more flexible, scalable and performance packet classification
+IPVS – specifically designed for load balancing, uses hash mapping generic firewalling software that allows you to define rulesets
+
+
+```
