@@ -215,4 +215,20 @@ Kubernetes starts 4 initial namespaces
 kubectl get namespace
 
 You can create your own namespaces : kubectl create namespace dev
+
+Names of resources need to be unique within a namespace, but not across namespaces.
+
+Namespace-based scoping is applicable only for namespaced objects eg. Deployments, Services
+But not for cluster-wide objects eg. StorageClass, Nodes, PersistentVolumes
+
+
+Single-Namespace Objects : ConfigMaps and Secrets can't be shared across namespaces
+
+Multi-Namespace Objects: A Service and Pods can belong to multiple namespaces
+
+Cluster-Wide Objects: Volumes and Nodes cannot be bound to namespace since they are global
+
+You can apply system quota restrictions on a namespace to avoid overuse eg Mem, Compute
+
+If you don't provide a namespace for a component it will end up in the default namespace
 ```
