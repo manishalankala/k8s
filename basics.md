@@ -1326,3 +1326,33 @@ Cluster API
 Declarative APls and tooling to simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
 Cluster API can be extended to support any infrastructure (AWS, Azure, vSphere, etc.), bootstrap or control
 plane (kubeadm is built-in) provider.
+
+
+Deployment Strategies
+```
+A deployment strategy is a way to change or upgrade an application.
+
+Rollout is when you replace or update servers with new version of an application
+Rollback is when you replace or revert recently updated servers back to the previous version
+
+There are several different deployment strategies that can be utilized with Kubernetes:
+
+Recreate - Terminate the current pods, create new pods all at once
+
+RollingUpdate - Replaces one or multiple pods at a time
+
+Canary - Add new pods and route a subset of your users to the new server, if no bugs or errors occur, roll out
+changes to all pods
+
+Blue / Green - Deploy an exact copy of your entire infrastructure, swap the traffic and then terminate the old
+environment or rollback to old environment
+
+A/B Testing, Red / Black - Similar to Canary and Blue/Green but continuously keep the new environments
+running to test features on a subset of users
+
+Dark Launches - Similar to A/B Testing, except you use a feature flag to rollout new features, and rollback by
+turning off the feature in the software instead of reverting infrastructure changes
+
+
+Recreate - Terminate all running instances and recreate with Also known as an In-Place deploy
+```
