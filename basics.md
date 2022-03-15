@@ -83,3 +83,23 @@ Resource Configuration file is sometimes used to describe multiple
 resources in a manifest.
 
 ```
+
+
+Control Plane 
+
+```
+API Server- the backbone of communication
+Scheduler – determines where to start a pod on worker node
+Controller Manager - detect state changes (if pod crashes,
+etcd - A Key/Value Store that stores the state of the cluster
+Kubelet – Allows user to interact with the node via KubeCTL
+```
+
+Worker Nodes
+
+```
+Kubelet
+Kube Proxy
+Container Runtime
+Pods and Containers
+```
