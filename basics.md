@@ -154,3 +154,49 @@ A deployment will create and manage a ReplicaSet.
 A ReplicaSet will manage replicas of pod.
 
 ```
+
+ReplicaSet
+```
+ReplicaSet is a way to maintain a desired amount of redundant pods (replicas) to provide a guarantee of availability.
+
+The pod field metadata.ownerReferences determines The link from a pod to a ReplicaSet.
+
+```
+
+Stateful Sets
+```
+Stateful Sets are used when you need traffic to be sent to a specific pods.
+
+Stateful Set will always have:
+- a unique and predictable name and address
+- ordinal index number assigned each pod
+- a persistent volume attached, with a persistent link from pod to the storage
+If a pod is rescheduled the original Persistent Volume (PV) will be
+mounted to ensure data integrity and consistency.
+- Stateful Set pods will always start in the same order, and terminate in
+reverse order
+
+StatefulSets currently require a "headless" service to manage the identities
+
+There is a headless service used to maintain the network identity pods, and another service that provides read access to the pods
+
+
+DNS Hostname for Writes:
+Writes will be directed to the Main pod by its DNS Hostname which is identified by a Headless Service
+
+ClusterIP for Reads:
+For read traffic it can be distributed to all reading pods using a ClusterIP Service
+
+Headless Service:
+The headless service is a Service with ClusterIP set to none.
+It does not provide load balancing
+It does not provide a static IP address
+A Headless Service is used to identify specific pods by assigning them DNS record.
+A Headless Service is required in order for a StatefulSet to work.
+
+PVC and PV:
+Each pod has its own volume. A Persistent Volume Claim can dynamically reference a Persistent Volume.
+
+
+
+```
