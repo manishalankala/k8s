@@ -1355,4 +1355,19 @@ turning off the feature in the software instead of reverting infrastructure chan
 
 
 Recreate - Terminate all running instances and recreate with Also known as an In-Place deploy
+
+Rolling Updates - slowly replaces pods one by one. This is the default strategy of Kubernetes
+*Reduced availability might happen while each set of pods is taken terminated as new are created
+Rollbacks can be slow and hard
+Deploys will be slow
+
+Two important values:
+maxSurge:
+The amount of pods that can be added
+maxUnavailable :
+The amount of pods that can be unavailable
+
+A maxSurge of 2 and a maxUnavailable of 2 would ensure no drop in availability.
+The deployment would have to first create the new pods before tearing down the old.
+
 ```
