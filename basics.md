@@ -592,4 +592,46 @@ Application data is stored in persistent volumes for applications running on the
 
 etcd is a strongly consistent, distributed key-value store that provides a reliable way to store data that needs to be accessed
 by a distributed system or cluster of machines.
+
+things used by : k8s cluster, coredns,Rook
+```
+
+
+
+Volumes
+```
+Kubernetes supports many types of volumes.
+A Pod can use any number of volume types simultaneously
+
+Persistent Volumes :  Attaching an external storage to a pod. The data will persist even if the pod is terminated.
+
+Ephemeral Volumes : A volume that's only exists as long as the pod exists.Intended for temporary data storage.
+
+Projected Volumes : maps several existing volume sources into the same directory.
+
+Volume Snapshot : Archiving a volume configuration and its data for rollbacks or backup
+
+Types of Volumes Supported:
+awsElasticBlockStore
+azureDisk
+azureFile
+cephfs
+cinder
+configMap
+downwardAPI
+emptyDir
+fc (fibre channel)
+gcePersistentDisk
+glusterfs
+hostPath
+iscsi
+local
+nfs
+persistentVolumeClaim
+portworxVolume
+projected
+rbd
+secret
+vsphereVolume
+
 ```
