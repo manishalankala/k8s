@@ -1201,3 +1201,128 @@ Network Policies
 TLS for Kubernetes Ingress
 
 ```
+
+
+Security
+```
+Network access to API Server (Control plane)
+
+All access to the Kubernetes control plane is not allowed publicly on the internet and is controlled by
+network access control lists restricted to the set of IP addresses needed to administer the cluster.
+
+Network access to Nodes (nodes)
+Nodes should be configured to only accept connections from the control plane on the specified ports, and accept
+connections for services in Kubernetes of type NodePort and LoadBalancer.
+
+Kubernetes access to Cloud Provider API
+Each cloud provider grant a different set of permissions to the Kubernetes control plane and nodes. It is best to provide
+the cluster with cloud provider access that follows the principle of least privilege for the resources it needs to administer.
+
+Access to etcd
+Access to etcd (the datastore of Kubernetes) should be limited to the control plane only. Depending on your
+configuration, you should attempt to use etcd over TLS. More information can be found in the etcd documentation.
+
+etcd Encryption
+Wherever possible it's a good practice to encrypt all storage at rest, and since etcd holds the state of the
+entire cluster (including Secrets) its disk should especially be encrypted at rest
+
+Best Practices
+1. Enable Kubernetes Role-Based Access Control (RBAC)
+2. Use Third-Party Authentication for API Server
+3. Protect etcd with TLS, Firewall and Encryption
+4. Isolate Kubernetes Nodes
+5. Monitor Network Traffic to Limit Communications
+6. Use Process Whitelisting
+7. Turn on Audit Logging
+8. Keep Kubernetes Version Up to Date
+9. Lock Down Kubelet
+
+```
+
+
+```
+Role-based Access Controls
+(RBAC) is a way of defining permissions for identities based on a organizational role.
+RBAC authorization uses the rbac.authorization.k8s.io API group to drive authorization
+decisions, allowing you to dynamically configure policies through the Kubernetes API.
+To enable RBAC, start the API server with the --authorization-mode flag
+
+
+kube-apiserver --authorization-mode=RBAC
+
+With Kubernetes RBAC there are only Allow Rules, Everything is Deny by default.
+
+
+By default Secrets are unencrypted in etcd store.
+Anyone with access to the etcd store has access to the secrets
+Anyone who has access to a Pod within Namespace with have access to the Secrets used by that pod
+
+How to keep Secrets safe:
+Enable Encryption at Rest for Secrets
+Enable or configure RBAC rules that restrict reading data in Secrets
+Use mechanisms such as RBAC to limit which principals are allowed to create new Secrets or replace existing ones
+
+
+Network Policies act as virtual firewalls for pod communication.
+Pod communication can be restricted based on the follow scopes:
+Pod-to-pod
+Namespaces
+Specific IPs
+
+Selectors are used to determine to select resources with matching labels for the Network Policy to be applied to
+The Network Plugin you are using must support Network Policies
+Eg. Calico, Weave Net , Cilium, Kube-router, Romana.
+
+```
+
+Certificates and TLS
+
+```
+Kubernetes provides a certificates.k8s.io API, which lets you provision TLS certificates signed by a Certificate
+Authority (CA) that you control. These CA and certificates can be used by your workloads to establish trust.
+
+What is Public key infrastructure (PKI)?
+PKI is a set of roles, policies, hardware, software and procedures needed to create, manage,
+distribute, use, store and revoke digital certificates and manage public-key encryption.
+
+What is a x.509 certificate?
+A standard defined by the International Telecommunication Union (ITU) for public key certifications.
+X.509 certificates are used in many Internet protocol:
+SSL/TLS and HTTPS
+Signed and encrypted email
+Code Signing and Document Signing
+A certificate contains
+An identity
+A public key – RSA, DSA, ECDA etc...
+- hostname, organization or individual
+
+
+Kubernetes requires PKI for the following operations:
+Client certificates for the kubelet to authenticate to the API server
+Server certificate for the API server endpoint
+Client certificates for administrators of the cluster to authenticate to the API server
+Client certificates for the API server to talk to the kubelets
+Client certificate for the API server to talk to etcd
+Client certificate/kubeconfig for the controller manager to talk to the API server
+Client certificate/kubeconfig for the scheduler to talk to the API server.
+Client and server certificates for the front-proxy
+
+most certificates are stored in /etc/kubernetes/pki
+Lightweight distributions store in different locations
+```
+
+
+What is Autoscaling?
+In computing; autoscaling is when systems without manual intervention adjust capacity (eg. amount of CPU, Ram)
+to meet the demand (traffic from users) by adding or removing resources commonly triggered by events.
+
+Horizontal Pod Scaling (HorizontalPodAutoscaler) Add more pods to meet the demand
+
+Vertical Pod Scaling (VerticalPodAutoscaler) Right-size pods for the optimal CPU and memory resources
+
+Cluster Auto Scaling (Cluster Autoscaler or Karpenter) Add or remove Nodes (compute servers) based on demand
+
+Cluster API
+Declarative APls and tooling to simplify provisioning, upgrading, and operating multiple Kubernetes clusters.
+Cluster API can be extended to support any infrastructure (AWS, Azure, vSphere, etc.), bootstrap or control
+plane (kubeadm is built-in) provider.
