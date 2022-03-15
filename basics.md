@@ -474,3 +474,28 @@ Supports common Cl environments
 
 ```
 
+
+K3s
+
+```
+is a lightweight tool designed to run production-level Kubernetes workloads for
+low-resourced and remotely located loT and Edge devices and Bare metal.
+Originally Created by Rancher, a Sandbox CNCF Project
+RANCHER
+
+
+K3s
+does not use kubelet, but it runs kubelet on the host machine and uses the host's
+scheduling mechanism to run containers
+K3s uses kube-proxy to proxy the network connections of the nodes.
+K8s uses kube-proxy to proxy the network connections of an individual container.
+
+k3s can have tighter security deployment than k8s because of their small attack surface area.
+
+
+K3d
+is a
+platform-agnostic, lightweight wrapper that runs K3s in a docker container.
+It helps run and scale single or multi-node K3S clusters quickly without further
+setup while maintaining a high availability mode.
+```
