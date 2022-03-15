@@ -111,4 +111,7 @@ Files can be written in either: yaml or json
 
 A manifest can contain multiple K8s component definitions/configurations.
 
+Resource Configuration file is sometimes used to describe multiple
+resources in a manifest.
+
 ```
