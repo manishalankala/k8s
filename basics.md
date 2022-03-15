@@ -681,3 +681,36 @@ be mounted ReadWriteOnce, ReadOnlyMany or
 ReadWriteMany, see AccessModes).
 
 ```
+
+
+ConfigMaps
+
+```
+A ConfigMap is an API object used to store non-confidential data in key-value pairs for pods
+
+Pods can consume ConfigMaps as:
+environment variables
+command-line arguments
+configuration files in a volume
+
+A ConfigMap allows you to decouple environment-specific configuration from your container images, so that your applications are easily portable.
+```
+
+
+Kubernetes Services
+```
+
+Kubernetes Service allows you to attach a static IP address and DNS name for a set of pods
+A K8s Service allows you to persist an address for a pod even if it dies. K8s Service also acts a load balancer
+
+A Pod without a service will have a dynamic IP address. So when the pod dies so does the IP address.
+
+
+following service types:
+ClusterIP - default, randomly forward traffic to any pod set with target port
+Headless - send traffic to very specific pod, when you have stateful pods eg. Database
+NodePort – external service, allows you to use worker node IP address
+LoadBalancer – similar to nodeport except leverages Cloud Service Provider's (CSPS) load balancer
+ExternalName – a special service that does not have selectors and uses DNS names instead
+
+```
