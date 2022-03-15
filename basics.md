@@ -197,6 +197,22 @@ A Headless Service is required in order for a StatefulSet to work.
 PVC and PV:
 Each pod has its own volume. A Persistent Volume Claim can dynamically reference a Persistent Volume.
 
+```
 
 
+Namespace
+```
+A Namespace is a way to logically isolate resources within a Kubernetes Cluster.
+Namespaces can be organized based on project, department or any user-defined grouping.
+
+Kubernetes starts 4 initial namespaces
+
+1. default:   The default namespace where all our pods and services run unless a namespace is specified.
+2. kube-public:  For resources that are publicly visible and readable.
+3. kube-system: The system namespace that stores objects created by the Kubernetes System.Engineers deploying applications are not supposed to touch this namespace.
+4. kube-node-lease: Holds lease objects associated with each node. Used to detect node failures by sending heartbeats
+
+kubectl get namespace
+
+You can create your own namespaces : kubectl create namespace dev
 ```
