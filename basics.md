@@ -714,3 +714,65 @@ LoadBalancer – similar to nodeport except leverages Cloud Service Provider's (
 ExternalName – a special service that does not have selectors and uses DNS names instead
 
 ```
+
+Traffic Policies
+
+```
+K8s Service allows you set a Traffic policies to determine how ingress traffic is routed.
+There are 2 types of Traffic policies
+
+1. External Traffic Policy
+how traffic from external sources is routed and has two valid values:
+Cluster – route external traffic to all ready endpoints
+Local - only route to ready node-local endpoints
+
+2. Internal Traffic Policy
+how traffic from internal sources is routed (has the same two values as External)
+
+If the traffic policy is Local and there are are no node-local endpoints,
+then kube-proxy does not forward any traffic for the relevant Service
+
+```
+
+
+ClusterlP
+
+```
+ClusterIP is the default service type for a K8 service.
+It is used for internal traffic. External traffic will not reach the service. Traffic will be randomly distributed to any targeted pods.
+
+Traffic originating from within the cluster will pass through the Node's Kubernetes Proxy and then onto to Kubernetes Service
+
+A service can span multiple worker nodes for cross-node pods.
+
+When to use ClusterIP:
+Debugging
+Testing
+Internal traffic
+Internal Dashboards
+```
+
+NodePort
+
+```
+NodePort allows you to expose a port for Virtual Machines running pods that the Service is managing.
+
+There is no external load balancer so NodePort is intended for a single Kubernetes Service and for non production workloads.
+
+```
+
+
+
+Ports types
+```
+Port exposes the Kubernetes service on the specified port within the cluster.
+Other pods within the cluster can communicate with this server on the specified port.
+
+Target Port is the port on which the service will send requests to, that your pod will be
+listening on. Your application in the container will need to be listening on this port also.
+
+NodePort
+exposes a service externally to the cluster by means of the target nodes IP
+address and the NodePort. NodePort is the default setting if the port field is not specified.
+
+```
