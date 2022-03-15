@@ -112,6 +112,7 @@ Pods abstract away the container layer so you can directly interact with the Kub
 A Pod is intended to run one application in multiple containers Database Pod, Job Pod, Frontend App Pod, Backend App Pod
 You can run multiple apps in a pod but those containers will tightly dependent.
 Each Pod gets it own private IP address Containers will run on different ports Containers can talk to each other via localhost
+
 Each Pod can have a shared storage volume attached. All containers will share the same volume
 When the last remaining container dies (maybe crashes) in a pod so does the pod When a replacement pod is created, the pod will have an IP address will be assigned.
 IP addresses are Ephemeral, (temporary) for pods, they don't by default persist.
@@ -122,9 +123,27 @@ Kubernetes api server
 The core of Kubernetes control plane is the API server
 The API server exposes an HTTP API that lets end users, different parts of your cluster, and external components communicate with one another.
 The Kubernetes API lets you query and manipulate the state of API objects in Kubernetes (for example: Pods, Namespaces, ConfigMaps, and Events).
+
 The API server is a component of the Kubernetes control plane that exposes the Kubernetes API. The API server is the front end for the Kubernetes control plane.
 The main implementation of a Kubernetes API server is kube-apiserver.
 kube-apiserver is designed to scale horizontally-that is, it scales by deploying more instances.You can run several instances of kube-apiserver and balance traffic between those instances.Everything has to go through the API Server.
 You can interact with the API Server in three ways: UI, API, CLI KubeCTL
+
+```
+
+
+Deployment
+```
+A Deployment provides declarative updates for Pods and ReplicaSets.
+
+A Deployment Controller changes the actual state to the desired state at a controlled rate.
+
+The default Deployment Controller can be swapped out for other deployments tools eg: Argo CD, Flux, Jenkin X...
+
+A Deployment define the desired state of ReplicaSets and Pods.
+
+A deployment will create and manage a ReplicaSet.
+
+A ReplicaSet will manage replicas of pod.
 
 ```
