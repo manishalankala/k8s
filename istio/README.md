@@ -1,6 +1,18 @@
 
 
 
+1.Virtual services (The hosts field, Routing rules, Destination, Routing rule precedence ,)
+
+2.Destination rules
+
+3.Gateways
+
+4.Service entries
+
+5.Sidecars
+
+
+
 
 ## Ingress
 
