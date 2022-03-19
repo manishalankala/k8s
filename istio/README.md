@@ -50,3 +50,8 @@ Ref : https://istio.io/latest/docs/tasks/traffic-management/ingress/gateway-api/
 to configure HTTPS ingress access to an HTTP service.
 
 Ref : https://istio.io/latest/docs/tasks/traffic-management/ingress/ingress-sni-passthrough/
+
+
+Custom configuration :
+
+https://istio.io/latest/docs/setup/additional-setup/customize-installation/
