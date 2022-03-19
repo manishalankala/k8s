@@ -1,3 +1,8 @@
+
+
+REF : https://istio.io/latest/docs/setup/getting-started/#download
+
+
 curl -L https://istio.io/downloadIstio | sh -
 
 cd istio-1.13.2
@@ -28,7 +33,8 @@ export SECURE_INGRESS_PORT=$(kubectl -n istio-system get service istio-ingressga
 
 echo http://$INGRESS_HOST:$INGRESS_PORT/productpage
 
-Accessing The Kiali Service
+## Accessing The Kiali Service
+
 kubectl -n istio-system port-forward  svc/kiali 20001:20001 ## Using port forwarding
 
 kubectl patch service kiali --patch '{"spec":{"type":"LoadBalancer"}}' -n istio-system ## Convert the service to LoadBalancer
@@ -41,5 +47,5 @@ Username: admin
 
 Password: admin
 
-Traffic Monitoring
+## Traffic Monitoring
 curl -o /dev/null -s -w %{http_code} http://publicip/productpage
