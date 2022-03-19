@@ -14,6 +14,28 @@
 
 
 
+
+
+
+Pilot :
+
+
+Routing. For example 90% of the traffic goes to the version 1 of a microservice and the remaining 10% goes to the version 2. Or some specific requests go to the version 1 and all the others to the version 2, according to some condition. And also: a) rewrite b) redirect
+Support for microservices development, deployment and testing: a) timeouts b) retries c) circuit breakers d) load balancing e) fault injection for testing
+
+
+Mixer:
+
+Reporting: Logging, Distributed Tracing, Telemetry
+Policy enforcement
+
+Citadel (previously CA, previously Auth):
+
+Secure communication between micro services and strong identity.
+
+
+
+
 ## Ingress
 
 Controlling ingress traffic for an Istio service mesh.
