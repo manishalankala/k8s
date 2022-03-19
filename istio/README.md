@@ -34,6 +34,16 @@ Citadel (previously CA, previously Auth):
 Secure communication between micro services and strong identity.
 
 
+Note : 
+
+Envoy, the sidecar proxy, gets its routing and configuration tables from Pilot to implement . 
+
+Envoy reports to Mixer about each request, to implement . 
+
+Envoy asks Mixer to allow or forbid requests, to implement .
+
+Envoy gets certificates from Citadel to implement.
+
 
 
 ## Ingress
