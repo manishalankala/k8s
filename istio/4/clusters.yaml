@@ -1,0 +1,23 @@
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  values:
+    security:
+      selfSigned: false
+    global:
+      multiCluster:
+        clusterName: cluster1
+      network: ""
+      meshExpansion:
+        enabled: true
+        
+---
+apiVersion: install.istio.io/v1alpha1
+kind: IstioOperator
+spec:
+  values:
+    global:
+      multiCluster:
+        clusterName: cluster2
+      network: ""
+      remotePilotAddress: ISTIO_REMOTE_EP
