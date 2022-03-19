@@ -1,5 +1,10 @@
 
 
+kubectl version --short
+
+kubectl api-versions
+
+
 REF : https://istio.io/latest/docs/setup/getting-started/#download
 
 
