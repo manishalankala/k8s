@@ -1,0 +1,30 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    visualize: "true"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql
+        visualize: "true"
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.6
+        livenessProbe:
+          tcpSocket:
+            port: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          # change this
+          value: yourpassword
+        - name: MYSQL_DATABASE
+          value: app
+        ports:
+        - containerPort: 3306
+          name: mysql
