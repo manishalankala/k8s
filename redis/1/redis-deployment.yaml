@@ -1,0 +1,25 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+    visualize: "true"
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: redis
+        version: "4.0.2"
+        visualize: "true"
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+        ports:
+        - name: redis-server
+          containerPort: 6379
