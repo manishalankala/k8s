@@ -35,3 +35,10 @@ argocd app create guestbook --repo https://github.com/argoproj/argocd-example-ap
 kubectl get all -n default
 
 argocd app delete guestbookargocd app delete guestbook
+
+
+kubectl get secrets
+
+echo -n username | base64
+
+argocd repocreds list
