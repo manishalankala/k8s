@@ -7,7 +7,7 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/manishalankala/k8s/new/master/argocd.git
+    repoURL: https://github.com/manishalankala/k8s/argocd.git
     targetRevision: HEAD
     path: dev
   destination: 
