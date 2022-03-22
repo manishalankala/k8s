@@ -1,16 +1,16 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: samplewebapp 
+  name: mywebapp 
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: samplewebapp
+      app: mywebapp
   template:
     metadata:
       labels:
-        app: samplewebapp 
+        app: mywebapp 
     spec:
       containers:
         - name: samplewebapp 
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: samplewebapp
+    name: mywebapp
 spec:
     type: LoadBalancer
     ports:
     - port: 80 
     selector:
-        app: samplewebapp
+        app: mywebapp
