@@ -8,16 +8,16 @@ Actions Argo CD can perform: Argo Workflows, Standard K8s Objects, HTTP Requests
 
 defines an argoproj.io/v1alpha1/Application resource
 
-project — The Argo CD project where this application should reside
+1.project — The Argo CD project where this application should reside
 
-source.repoURL — The GitHub repository URL from which ArgoCD should sync the manifests
+2.source.repoURL — The GitHub repository URL from which ArgoCD should sync the manifests
 
-source.targetRevision — The revision of the Git repository from which ArgoCD should sync the manifests
+3.source.targetRevision — The revision of the Git repository from which ArgoCD should sync the manifests
 
-source.path — The path of the directory in the Git repository where the manifests to be applied are located
+4.source.path — The path of the directory in the Git repository where the manifests to be applied are located
 
-destination.server — The Kubernetes API server URL where Argo CD should deploy the resources
+5.destination.server — The Kubernetes API server URL where Argo CD should deploy the resources
 
-destination.namespace — The namespace where Argo CD should deploy the resources. In this case, it is the default namespace
+6.destination.namespace — The namespace where Argo CD should deploy the resources. In this case, it is the default namespace
 
-syncPolicy.automated.selfHeal — It signifies that the sync is automated. The selfHeal flag specifies that partial app sync is needed if the resources change in the target (i.e. the Kubernetes cluster) but not the source.
+7.syncPolicy.automated.selfHeal — It signifies that the sync is automated. The selfHeal flag specifies that partial app sync is needed if the resources change in the target (i.e. the Kubernetes cluster) but not the source.
