@@ -8,10 +8,10 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/
+    repoURL: https://github.com/manishalankala/k8s/argocd.git
     targetRevision: HEAD
     path: 
-  destination:
+  destination: manifests/nginx
     server: https://kubernetes.default.svc
     namespace: default
   syncPolicy:
