@@ -1,0 +1,38 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy-grafana
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 
+    path: oauth2-proxy
+    helm:
+      valueFiles:
+      - grafana.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus-operator
+    
+    
+---
+    
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: oauth2-proxy-prometheus
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: 
+    path: oauth2-proxy
+    helm:
+      valueFiles:
+      - prometheus.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prometheus-operator
