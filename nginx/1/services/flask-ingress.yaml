@@ -6,3 +6,37 @@ spec:
   backend:
     serviceName: flask-app
     servicePort: 5000
+
+
+
+### Flask with clusterip ####
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    run: flask-app
+#  name: flask-app
+#spec:
+#  ports:
+#  - port: 5000
+#    protocol: TCP
+#    targetPort: 5000
+#  selector:
+#    run: flask-app
+
+
+### Flask as LB ####
+#apiVersion: v1
+#kind: Service
+#metadata:
+#  labels:
+#    run: flask-app
+#  name: flask-app
+#spec:
+#  ports:
+#  - port: 5000
+#    protocol: TCP
+#    targetPort: 5000
+#  selector:
+#    run: flask-app
+#  type: LoadBalancer
