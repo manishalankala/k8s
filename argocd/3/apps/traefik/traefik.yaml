@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: traefik
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  destination:
+    namespace: ingress
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - dev/values.yaml
+    path: traefik
+    repoURL: 'https://github.com/debu99/test-repo.git'
+    targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
