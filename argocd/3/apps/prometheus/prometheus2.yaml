@@ -15,7 +15,7 @@ spec:
       valueFiles:
       - dev/values.yaml
     path: prometheus
-    repoURL: 'https://github.com/debu99/test-repo.git'
+    repoURL: ' '
     targetRevision: HEAD
   syncPolicy:
     automated:
