@@ -1,0 +1,59 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-guestbook-test
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: ' '
+    path: helm-guestbook
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-test.yaml
+      parameters:
+        - name: service.type
+          value: NodePort
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+    
+    
+    
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: ' '
+    path: nginx
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: postgres
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: ' '
+    path: postgres
+    targetRevision: HEAD
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=false
