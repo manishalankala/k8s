@@ -1402,8 +1402,9 @@ The deployment would have to first create the new pods before tearing down the o
 ```
 
 
-```
 **Common Kubernetes errors**
+```
+
 
 1. The selector of the labels on the service does not have a match with the pods
 2. Wrong container port mapped to the service
