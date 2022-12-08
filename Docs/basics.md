@@ -1,3 +1,6 @@
+![image](https://user-images.githubusercontent.com/33985509/204733805-6aaa1897-48fa-41b7-8213-335a6e6e8aef.png)
+
+
 
 -  ```    ```
 
@@ -1399,4 +1402,41 @@ The amount of pods that can be unavailable
 A maxSurge of 2 and a maxUnavailable of 2 would ensure no drop in availability.
 The deployment would have to first create the new pods before tearing down the old.
 
+
 ```
+
+
+**Common Kubernetes errors**
+```
+
+
+1. The selector of the labels on the service does not have a match with the pods
+2. Wrong container port mapped to the service
+3. CrashLoopBackOff
+4. Liveness and readiness probes
+5. Resources — Requests and Limits
+6. Too many load balancer–type services
+7. Wrong Container Image / Invalid Registry Permissions
+8. Missing ConfigMap or Secret
+9. Exceeding CPU/Memory Limits (Resource Quotas)
+10. Exit Code 1
+11. Exit Code 125
+12. Exit Code 126
+13. Indentation
+14. Maps vs. arrays
+15. Expected vs. received values: `invalid type for…` or `got “string”, expected “integer”
+16. spelling or camelCase errors
+17. Invalid references between resources
+18. Pods Stuck in `ContainerCreating State`
+19. Failure in IP address allocation
+20. Disk/storage space failures
+21. Errors in Startup script or InitContainers
+22. Kube-proxy & IP Tables
+23. Conntrack
+24. CNI (Container networking interface) & Routing Table
+25. Insufficient Cluster Resources
+26. Container Image Not Updating
+27. ARP cache
+
+```
+
