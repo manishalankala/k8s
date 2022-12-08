@@ -5,6 +5,7 @@
 
 - **Cluster** -   ``` A logical grouping of all components within a cluster.```
 
+
 - **Namespace** -  ``` A named logical grouping of Kubernetes components within a cluster.Used to Isolate different workloads on the same cluster.   ```
 
 
@@ -16,11 +17,13 @@ Worker nodes is where your application or workloads run. Control Plane nodes man
 
 - **Pod** -  ``` The smallest unit in K8s. It is an abstraction over a container.Generally defines an application workload.```
 
+
 - **Service** -
 ```
 A static IP address and DNS name for a set of pods (persists an address even if a pod dies) and a load balancer
 A "service" can also mean a container that continuously runs.
 ```
+
 
 - **Ingress** -  ``` Translates HTTP/S rules to point to services ```
 
@@ -66,7 +69,7 @@ StatefulSets are hard, when you can host your db externally from K8s cluster
 
 
 
-- Manifest
+- **Manifest** -
 ```
 A Manifest file is a document that is commonly used for customs to list the contents of
 cargo, or passengers. Its an itemized list of things.
@@ -85,7 +88,7 @@ resources in a manifest.
 ```
 
 
-- Control Plane 
+- **Control Plane** -
 
 ```
 API Server- the backbone of communication
@@ -95,7 +98,7 @@ etcd - A Key/Value Store that stores the state of the cluster
 Kubelet – Allows user to interact with the node via KubeCTL
 ```
 
-- Worker Nodes
+- **Worker Nodes**
 
 ```
 Kubelet
